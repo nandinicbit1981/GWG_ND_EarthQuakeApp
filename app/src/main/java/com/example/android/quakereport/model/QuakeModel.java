@@ -1,20 +1,24 @@
 package com.example.android.quakereport.model;
 
+import android.net.Uri;
+
 /**
  * Created by nandpa on 4/26/18.
  */
 
 public class QuakeModel {
-    private float magnitude;
+    private double magnitude;
     private String location;
-    private String time;
-    public QuakeModel(float magnitude, String location, String time) {
+    private long date;
+    private Uri url;
+    public QuakeModel(double magnitude, String location, long date, Uri url) {
         this.magnitude = magnitude;
         this.location = location;
-        this.time = time;
+        this.date = date;
+        this.url = url;
     }
 
-    public float getMagnitude() {
+    public double getMagnitude() {
         return magnitude;
     }
 
@@ -30,11 +34,19 @@ public class QuakeModel {
         this.location = location;
     }
 
-    public String getTime() {
-        return time;
+    public long getDate() {
+        return date;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public Uri getUrl() {
+        return url;
+    }
+
+    public void setUrl(Uri url) {
+        this.url = url;
     }
 }
