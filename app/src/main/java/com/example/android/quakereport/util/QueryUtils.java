@@ -43,7 +43,7 @@ public final class QueryUtils {
      * Return a list of {@link QuakeModel} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<QuakeModel> extractEarthquakes() {
+    public static ArrayList<QuakeModel> extractEarthquakes(String  jsonString) {
 
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<QuakeModel> earthquakes = new ArrayList<>();
@@ -55,12 +55,12 @@ public final class QueryUtils {
 
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
             // build up a list of Earthquake objects with the corresponding data.
-            JSONObject jsonObject = new JSONObject(SAMPLE_JSON_RESPONSE);
+            JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray jsonArray = jsonObject.getJSONArray("features");
             JSONObject quakeObject = new JSONObject();
             for(int i=0;i<jsonArray.length();i++) {
                 quakeObject = ((JSONObject) jsonArray.get(i)).getJSONObject("properties");
-                double magnitude = (double)quakeObject.get("mag");
+                double magnitude = (double) quakeObject.getDouble("mag");
                 String location = (String)  quakeObject.get("place");
                 long timeInMilli = (long) quakeObject.get("time");
                 Uri url = Uri.parse((String)quakeObject.get("url"));

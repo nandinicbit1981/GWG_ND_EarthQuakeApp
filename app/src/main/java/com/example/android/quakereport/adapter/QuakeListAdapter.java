@@ -1,6 +1,5 @@
 package com.example.android.quakereport.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.android.quakereport.R;
+import com.example.android.quakereport.activity.EarthquakeActivity;
 import com.example.android.quakereport.model.QuakeModel;
 import com.example.android.quakereport.util.DateUtil;
 import com.example.android.quakereport.util.Utils;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public class QuakeListAdapter extends ArrayAdapter<QuakeModel> {
-    public QuakeListAdapter(@NonNull Context context, int resource, @NonNull List objects) {
+    public QuakeListAdapter(@NonNull EarthquakeActivity context, int resource, @NonNull List objects) {
         super(context, resource, objects);
     }
 
@@ -55,6 +55,8 @@ public class QuakeListAdapter extends ArrayAdapter<QuakeModel> {
         if(location.length == 2) {
             locationTxt.setText(location[1]);
             directionTxt.setText(location[0] + " of");
+        } else {
+            locationTxt.setText(consolidatedText);
         }
 
         dateTxt.setText(DateUtil.formatDate(quakeModel.getDate()));
